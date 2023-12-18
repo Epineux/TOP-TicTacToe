@@ -1,0 +1,12 @@
+.game-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 4rem;
+  gap: 1rem;
+  background-color: black;
+}
+
+.cell {
+  height: 50px;
+  background-color: lightcyan;
+}
