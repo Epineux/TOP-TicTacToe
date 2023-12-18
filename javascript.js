@@ -1,4 +1,4 @@
-const cell = document.querySelectorAll('.cell');
+const cells = document.querySelectorAll('.cell');
 
 // Factory function for players
 function createPlayer(name, mark) {
@@ -65,6 +65,11 @@ const gameController = (function() {
       }
     }
 
+    // Else at turn 9 its a tie
+    if(turnCounter === 9) {
+      newGame();
+    }
+
   };
   
   return {newGame, playerMove};
@@ -78,17 +83,27 @@ const gameBoard = (function() {
   const emptyBoard = function() {
     for(let i = 0; i < 9; i++) {
       gameBoard[i] = '';
+      cells[i].textContent = '';
     }
   }
 
   const addMark = function(player, index) {
     gameBoard[index] = player.mark;
+    const mark = document.createElement('img');
+      if(player.mark === 'X') {
+        mark.setAttribute('src', 'svg/X-mark.svg');
+      } else {
+        mark.setAttribute('src', 'svg/O-mark.svg');
+      }
+    cells[index].appendChild(mark);
     return gameBoard;
   }
 
   return {emptyBoard, addMark, gameBoard};
 })();
 
-cell.forEach(cell => cell.addEventListener('click', (e) => {
-  
-}));
+for (let i = 0; i < cells.length; i++) {
+  cells[i].addEventListener('click', (e) => {
+    gameController.playerMove(i);
+  });
+}

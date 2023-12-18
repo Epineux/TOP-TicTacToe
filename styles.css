@@ -1,12 +1,28 @@
+.header {
+  text-align: center;
+  padding: 2rem;
+  font-size: 5rem;
+}
+
 .game-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  padding: 4rem;
+  padding: 3rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
   gap: 1rem;
+  justify-self: center;
+  width: 35%;
   background-color: black;
 }
 
 .cell {
-  height: 50px;
-  background-color: lightcyan;
+  aspect-ratio: 1/1;
+  background-color: white;
+}
+
+.cell img {
+  max-width: 95%;
 }
