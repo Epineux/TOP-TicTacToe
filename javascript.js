@@ -1,4 +1,11 @@
 const cells = document.querySelectorAll('.cell');
+const scores = document.querySelectorAll('.score');
+const playersCreator = document.querySelector('form');
+const overlay = document.querySelector('.create-player');
+const slider = document.querySelector('.slider')
+
+let player1 = {};
+let player2 = {};
 
 // Factory function for players
 function createPlayer(name, mark) {
@@ -10,8 +17,6 @@ function createPlayer(name, mark) {
 const gameController = (function() {
 
   let turnCounter = 0;
-  player1 = createPlayer('Bob', 'X');
-  player2 = createPlayer('Dany', 'O');
 
   const newGame = function() {
     turnCounter = 0;
@@ -61,6 +66,7 @@ const gameController = (function() {
       marksMap.includes(index2) &&
       marksMap.includes(index3)) {
         player.score += 1;
+        displayScore();
         newGame();
       }
     }
@@ -68,11 +74,16 @@ const gameController = (function() {
     // Else at turn 9 its a tie
     if(turnCounter === 9) {
       newGame();
+      displayScore();
     }
-
   };
-  
-  return {newGame, playerMove};
+
+  const displayScore = function() {
+    scores[0].textContent = player1.name + " score : " + player1.score;
+    scores[1].textContent = player2.name + " score : " + player2.score;
+  };
+
+  return {newGame, playerMove, displayScore};
 })();
 
 // IIFE for gameBoard
@@ -107,3 +118,20 @@ for (let i = 0; i < cells.length; i++) {
     gameController.playerMove(i);
   });
 }
+
+playersCreator.addEventListener('submit', (e)=> {
+  e.preventDefault();
+  const name1 = document.querySelector('#name1').value;
+  const name2 = document.querySelector('#name2').value;
+  player1 = createPlayer(name1, 'X');
+  player2 = createPlayer(name2, 'O');
+  gameController.displayScore();
+  overlay.classList.add('transparent');
+  setTimeout(function() {
+    slider.classList.add('active');
+  }, 1000);
+  setTimeout(function() {
+    overlay.style.display = 'none';
+  }, 2000);
+});
+

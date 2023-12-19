@@ -3,24 +3,42 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title></title>
+    <title>TIC TAC TOE</title>
     <link href="reset.css" rel="stylesheet" type="text/css">
     <link href="styles.css" rel="stylesheet" type="text/css"> 
     <script src="javascript.js" defer></script>
   </head>
 <body>
-  <div class="header">TIC TAC TOE</div>
-  <div class="game-container">
-    <div class="grid">
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
+  <div class="slider">
+    <div class="header">TIC TAC TOE</div>
+    <div class="game-container">
+      <p class="score"></p>
+      <div class="grid">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+      <p class="score"></p>
+    </div>
+    <div class="create-player">
+      <h1>TIC TAC TOE</h1>
+      <form>
+        <div class="player">
+          <label for="name1">Player 1</label>
+          <input type="text" id="name1" name="name" required>
+        </div>
+        <div class="player">
+          <label for="name2">Player 2</label>
+          <input type="text" id="name2" name="name" required>
+        </div>
+        <button>Start Game</button>
+      </form>
     </div>
   </div>
 </body>
